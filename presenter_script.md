@@ -38,20 +38,25 @@ joke "GIN" card — entirely optional, never required.
    This number resurfaces on the final recap table.
 
 ## Trial II — Naming the Gin (~4–5 min)
-10. Brief — the "someone got tipsy and broke the widgets" setup.
-11. **The Naming Target** — a dartboard (green/yellow/red rings, "Top Name"
-    at the center). A bottle marker drifts around; a knob controls slider
-    sensitivity, one slider pulls it horizontally, one vertically. Click
-    Lock Reading when you're happy with where it's sitting.
-    - **Jonas plays first**, 3 rounds, controls behave normally.
-    - **Falkorc plays second**, 3 rounds — round 1 is flaky (the marker
-      drifts and slips on its own, the knob under-/over-reacts), round 2 is
-      worse, and round 3 quietly behaves normally again (no announcement —
-      the app just plays it straight, same as any other round, so what
-      happens next lands as a surprise rather than a telegraphed joke).
+10. Brief — mixing three gin tonics sets each contender's names.
+11. **Mixing the Gin Tonic** — a glass with two dashed target lines (one for
+    Gin, one for the Gin+Tonic total). Three widgets: a dropdown to pick
+    which ingredient you're pouring, a vertical slider to raise the bottle
+    (below a threshold, nothing pours), and a horizontal slider to tilt it
+    (controls pour rate once raised). Switching the ingredient drops both
+    sliders back to zero — you're picking up a different bottle. Click
+    Serve This Round whenever you're happy with the level, then an explicit
+    button takes you to the next round (or to your three names on round 3
+    — nothing ever auto-advances).
+    - **Jonas plays first**, 3 rounds, pour response is smooth and linear.
+    - **Falkorc plays second**, 3 rounds — his bottle is just far more
+      sensitive: small tilt changes swing the pour rate hard, and it keeps
+      dribbling for a moment after you back off the tilt. Same widgets,
+      same rules, just twitchy.
     - Each round produces one candidate name. After 3 rounds, **each player
-      picks their favorite of their own 3 names** — that's the one that
-      goes on the bottle.
+      picks their favorite of their own 3 names** for the bottle label —
+      but all three names for both contenders carry through to the final
+      recap table, not just the chosen one.
 12. Bottled for the Village — both chosen names shown as bottle labels.
 
 ## Trial III — The Puzzle of Tastes (~2–3 min)
@@ -79,8 +84,8 @@ joke "GIN" card — entirely optional, never required.
 - **Slide text**: edit `content.md`, then run `python3 build.py`, then
   reload `index.html`.
 - **Game internals** (flavor-name pools, loading lines, score-to-rarity
-  labels, dartboard chaos tuning): edit directly in `index.html` — search
-  `TIER0`, `LOADING`, `scoreLabel`, `chaosFor`.
+  labels, pour sensitivity/target ranges): edit directly in `index.html` —
+  search `TIER0`, `LOADING`, `scoreLabel`, `renderRound`.
 - **Bottle art**: the bottle graphics on the "Bottled for the Village"
   screen are CSS-drawn glass shapes for now. If you add a `bottle.png` to
   `Characters/`, tell Claude and it'll wire it in as the real bottle image

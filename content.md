@@ -101,9 +101,9 @@ so editing them in the file itself is easier than round-tripping through here.
 
 **Eyebrow:** Trial II
 **Heading:** Naming the Gin
-**Body:** Everyone in the village knows a gin's tasting name carries more than flavor — it carries feeling, memory, longing, the whole unreasonable weight of a good evening. And there is no finer way to choose such a name than through Widgets.
-<br><br>Unfortunately, someone got a little too tipsy last night and thoroughly scrambled the naming widgets' code. The dropdowns misbehave. The sliders lie. Whoever handles a broken widget best, wins the name.
-**Button:** Let the Naming Begin
+**Body:** Everyone in the village knows a gin's tasting name carries more than flavor — it carries feeling, memory, longing, the whole unreasonable weight of a good evening. And there's no truer test of a gin than the tonic poured beside it.
+<br><br>Each contender mixes three gin tonics — choose the ingredient, raise the bottle, tilt it to the line. Pour close to the mark and the name that emerges is something to be proud of. Falkorc's bottle, for reasons nobody can explain, pours a great deal more eagerly than it should.
+**Button:** Let the Mixing Begin
 
 ## act3_brief
 

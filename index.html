@@ -129,33 +129,25 @@
   .stopwatch small{ font-size:22px; color:var(--text-dim);}
   .stopwatch.urgent{ color: var(--danger); text-shadow:0 0 22px rgba(176,52,42,0.5); }
 
-  /* ---- Act II: naming target (dartboard) ---- */
+  /* ---- Act II: pour to the line ---- */
   .widget-label{ font-size:12px; letter-spacing:3px; color: var(--text-dim); text-transform:uppercase; font-variant: small-caps;}
-  .swap-flash{ position:absolute; top:-6px; left:50%; transform:translateX(-50%); font-size:11px; letter-spacing:2px; color:var(--danger); text-transform:uppercase; opacity:0; transition:opacity .15s; white-space:nowrap; text-shadow:0 0 8px rgba(0,0,0,0.8);}
-  .swap-flash.show{ opacity:1; }
-  .dartboard-wrap{ display:flex; justify-content:center; position:relative; }
-  .dartboard{
-    position:relative; width:220px; height:220px; border-radius:50%;
-    background:
-      radial-gradient(circle,
-        rgba(107,156,74,0.65) 0%, rgba(107,156,74,0.65) 15%,
-        rgba(224,164,88,0.55) 15%, rgba(224,164,88,0.55) 37%,
-        rgba(176,52,42,0.5) 37%, rgba(176,52,42,0.5) 100%);
-    border:2px solid var(--line); box-shadow:inset 0 0 30px rgba(0,0,0,0.5);
-    touch-action:none;
-    cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMicgaGVpZ2h0PSc0MCcgdmlld0JveD0nMCAwIDMyIDQwJz4KPHBhdGggZD0nTTEzIDJoNnY3bDcgMTRhNSA1IDAgMCAxLTQuNSA3aC0xMUE1IDUgMCAwIDEgNiAyM2w3LTE0VjJ6JyBmaWxsPScjMjQxMTA4JyBzdHJva2U9JyNkNGFmMzcnIHN0cm9rZS13aWR0aD0nMS42JyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+CjxwYXRoIGQ9J004LjMgMjFoMTUuNGwxLjIgMi40YTUgNSAwIDAgMS00LjUgN2gtOWE1IDUgMCAwIDEtNC41LTd6JyBmaWxsPScjNGM4ZjNmJy8+CjxjaXJjbGUgY3g9JzE2JyBjeT0nMjcnIHI9JzEuNCcgZmlsbD0nIzhmZTM3YScgb3BhY2l0eT0nMC44Jy8+CjxjaXJjbGUgY3g9JzE5LjUnIGN5PScyNC41JyByPScwLjknIGZpbGw9JyM4ZmUzN2EnIG9wYWNpdHk9JzAuNycvPgo8cmVjdCB4PScxMicgeT0nMC41JyB3aWR0aD0nOCcgaGVpZ2h0PSczJyByeD0nMScgZmlsbD0nI2Q0YWYzNycvPgo8L3N2Zz4K') 6 4, auto;
+  .pour-row{ display:flex; gap:28px; justify-content:center; align-items:center; flex-wrap:wrap; }
+  .pour-glass{
+    position:relative; width:84px; height:150px; border:2px solid var(--line);
+    border-radius:6px 6px 16px 16px; background:#0c0704; overflow:hidden; box-shadow:inset 0 0 16px rgba(0,0,0,0.6);
   }
-  .dartboard .center-label{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); font-size:8.5px; letter-spacing:0.5px; text-transform:uppercase; color:#12200c; font-weight:bold; text-align:center; width:56px; pointer-events:none; }
-  .bottle-marker{ position:absolute; width:22px; height:30px; transform:translate(-50%,-50%); z-index:3; pointer-events:none; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.7)); transition:filter .2s; }
-  .bottle-marker svg{ width:100%; height:100%; display:block; }
-  .bottle-marker.settled{ filter:drop-shadow(0 0 10px rgba(227,184,79,0.9)); }
-
-  .knob-row{ display:flex; gap:26px; align-items:flex-end; justify-content:center; margin-top:8px; flex-wrap:wrap; }
-  .knob-block{ text-align:center; }
-  .knob{ width:48px; height:48px; border-radius:50%; margin:0 auto; position:relative; cursor:ns-resize; touch-action:none;
-    background: radial-gradient(circle at 35% 30%, #3a2610, #150e07); border:2px solid var(--accent-dim); box-shadow:0 4px 10px rgba(0,0,0,0.5); }
-  .knob .indicator{ position:absolute; left:50%; top:50%; width:2px; height:16px; background:var(--gold); transform-origin:50% 100%; transform:translate(-50%,-100%) rotate(0deg); border-radius:2px; }
-
+  .pour-fill{ position:absolute; left:0; right:0; bottom:0; transition:none; }
+  .pour-fill.gin{ background: linear-gradient(180deg, rgba(198,224,150,0.55), rgba(140,180,90,0.6)); }
+  .pour-fill.tonic{ background: linear-gradient(180deg, rgba(220,238,245,0.5), rgba(160,200,215,0.55)); }
+  .pour-target{ position:absolute; left:-2px; right:-2px; height:0; border-top:2px dashed rgba(227,184,79,0.8); }
+  .pour-target .pt-label{ position:absolute; right:2px; top:-14px; font-size:7.5px; letter-spacing:0.5px; text-transform:uppercase; color:var(--gold); }
+  .pour-readout{ font-size:11px; letter-spacing:1px; color:var(--warn); text-transform:uppercase; min-height:16px; text-align:center; }
+  .pour-controls{ display:flex; flex-direction:column; gap:14px; align-items:center; }
+  .ingredient-select{
+    font-family:inherit; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--accent);
+    background:#180f08; border:1px solid var(--accent-dim); border-radius:4px; padding:8px 12px; cursor:pointer;
+  }
+  .pour-sliders{ display:flex; gap:22px; align-items:flex-end; }
   .slider-block{ text-align:center; }
   .mini-label{ font-size:9px; letter-spacing:1px; color:var(--text-dim); text-transform:uppercase; margin-bottom:6px; }
   .mini-track{ position:relative; width:130px; height:24px; background:#0f0904; border:1px solid var(--line); border-radius:12px; touch-action:none; cursor:ew-resize; }
@@ -195,6 +187,9 @@
   .recap-table td.name-col{ color:var(--accent); font-variant:small-caps; letter-spacing:1px; }
   .recap-slogans{ display:flex; gap:3px; justify-content:center; flex-wrap:wrap; max-width:160px; margin:0 auto; }
   .recap-slogans img{ width:22px; height:22px; object-fit:cover; border-radius:2px; }
+  .recap-flavors{ list-style:none; padding:0; margin:0; font-size:11px; line-height:1.6; font-style:italic; color:var(--text-dim); }
+  .recap-flavors li.chosen{ color:var(--gold); font-style:normal; }
+  .recap-flavors li.chosen::before{ content:"\2605 "; }
 
   .loading{ font-size:12px; letter-spacing:2px; color: var(--warn); text-transform:uppercase; min-height:20px; font-style:italic;}
   .result-card{ text-align:center; max-width: 640px; }
@@ -235,7 +230,7 @@
   @media (max-width: 560px){
     .stopwatch{ font-size:44px; }
     .bottle-row{ gap:24px; }
-    .dartboard{ width:180px; height:180px; }
+    .pour-glass{ width:70px; height:130px; }
     .mini-track{ width:100px; }
     .slogan-grid{ gap:3px; }
   }
@@ -337,8 +332,8 @@
   "act2_brief": {
     "Eyebrow": "Trial II",
     "Heading": "Naming the Gin",
-    "Body": "Everyone in the village knows a gin's tasting name carries more than flavor — it carries feeling, memory, longing, the whole unreasonable weight of a good evening. And there is no finer way to choose such a name than through Widgets. <br><br>Unfortunately, someone got a little too tipsy last night and thoroughly scrambled the naming widgets' code. The dropdowns misbehave. The sliders lie. Whoever handles a broken widget best, wins the name.",
-    "Button": "Let the Naming Begin"
+    "Body": "Everyone in the village knows a gin's tasting name carries more than flavor — it carries feeling, memory, longing, the whole unreasonable weight of a good evening. And there's no truer test of a gin than the tonic poured beside it. <br><br>Each contender mixes three gin tonics — choose the ingredient, raise the bottle, tilt it to the line. Pour close to the mark and the name that emerges is something to be proud of. Falkorc's bottle, for reasons nobody can explain, pours a great deal more eagerly than it should.",
+    "Button": "Let the Mixing Begin"
   },
   "act3_brief": {
     "Eyebrow": "Trial III",
@@ -570,6 +565,7 @@
   const recap = {
     grade: { jonas: 70, falkorc: 70 },
     flavor: { jonas: null, falkorc: null },
+    allFlavors: { jonas: [], falkorc: [] },
     slogans: { jonas: [], falkorc: [] }
   };
 
@@ -640,18 +636,14 @@
     "Consulting the Weave...","Rolling for wild magic surge...","Attuning to the Astral Plane...","Channeling tadpole whispers...",
     "Scrying botanical entrails...","Measuring chaos affinity...","Checking the naming target...","Bartering with a displaced spirit..."
   ];
-  const TRAITS = { jonas: 'Naming widgets: responsive', falkorc: 'Naming widgets: unpredictable' };
+  const TRAITS = { jonas: 'Pour control: steady', falkorc: 'Pour control: hair-trigger' };
   const MAX_ROUNDS = 3;
-  const BOTTLE_SVG = `<svg viewBox="0 0 24 32">
-    <path d="M9 2h6v5l4 8v11.5a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V15l4-8z" fill="#2e5c22" stroke="#e3b84f" stroke-width="1"/>
-    <rect x="9.3" y="0.5" width="5.4" height="3" rx="1" fill="#e3b84f"/>
-  </svg>`;
 
   let g = null;
   RENDERERS.act2_game = function(){ initAct2(); };
 
   function initAct2(){
-    g = { mode:null, round:1, names:{jonas:[],falkorc:[]}, animId:null, swapTimer:null, joltTimer:null, lieTimer:null };
+    g = { mode:null, round:1, names:{jonas:[],falkorc:[]}, animId:null };
     startCharacter('jonas');
   }
 
@@ -660,7 +652,7 @@
     renderRound();
   }
 
-  function badge2(traitOverride){
+  function badge2(){
     if(!g || !g.mode) return '';
     let pips = '';
     for(let i=1;i<=MAX_ROUNDS;i++){
@@ -668,18 +660,11 @@
       if(i < g.round) cls = 'done'; else if(i === g.round) cls = 'current';
       pips += `<span class="${cls}"></span>`;
     }
-    const trait = traitOverride || TRAITS[g.mode];
     const name = g.mode === 'jonas' ? 'Jonas' : 'Falkorc';
-    return `<div class="player-badge"><div class="role">CHALLENGER: <b>${name}</b></div><div class="meta"><div>${trait}</div><div class="round-pips">${pips}</div></div></div>`;
+    return `<div class="player-badge"><div class="role">CHALLENGER: <b>${name}</b></div><div class="meta"><div>${TRAITS[g.mode]}</div><div class="round-pips">${pips}</div></div></div>`;
   }
 
-  function stopAnim2(){
-    if(g.animId) cancelAnimationFrame(g.animId);
-    if(g.swapTimer) clearTimeout(g.swapTimer);
-    if(g.joltTimer) clearTimeout(g.joltTimer);
-    if(g.lieTimer) clearTimeout(g.lieTimer);
-    g.animId = g.swapTimer = g.joltTimer = g.lieTimer = null;
-  }
+  function stopAnim2(){ if(g.animId) cancelAnimationFrame(g.animId); g.animId = null; }
 
   function tierFromScore(s){
     if(s >= 76) return {n:3, pool: TIER3};
@@ -696,173 +681,135 @@
     return "Common";
   }
 
-  // How broken the widgets are this round. Jonas: always fine. Falkorc:
-  // round 1 flaky, round 2 much worse, round 3 quietly fixed (no fanfare).
-  function chaosFor(mode, round){
-    if(mode === 'jonas') return { wander:0.22, jolt:null, swap:null, knobLie:false, trait:'Naming widgets: responsive' };
-    if(round === 1) return { wander:0.55, jolt:[3200,5000], swap:[5000,8000], knobLie:true, trait:'Naming widgets: unpredictable' };
-    if(round === 2) return { wander:1.0, jolt:[1800,3000], swap:[2600,4200], knobLie:true, trait:'Naming widgets: getting worse' };
-    return { wander:0.2, jolt:null, swap:null, knobLie:false, trait:'Naming widgets: strangely fine now' };
-  }
-
   function renderRound(){
     const mode = g.mode;
-    const chaos = chaosFor(mode, g.round);
+    const sensitive = mode === 'falkorc';
+    const targetGin = rand(24, 36);
+    const targetTonic = targetGin + rand(30, 42);
     stage.innerHTML = `
-      ${badge2(chaos.trait)}
-      <div class="widget-label">The Naming Target — Round ${g.round} of ${MAX_ROUNDS}</div>
-      <div class="dartboard-wrap">
-        <div class="swap-flash" id="swapFlash">Controls Swapped!</div>
-        <div class="dartboard" id="dartboard">
-          <div class="center-label">Top Name</div>
-          <div class="bottle-marker" id="marker">${BOTTLE_SVG}</div>
+      ${badge2()}
+      <div class="widget-label">Mixing the Gin Tonic — Round ${g.round} of ${MAX_ROUNDS}</div>
+      <div class="pour-row">
+        <div class="pour-glass" id="glass">
+          <div class="pour-target" style="bottom:${targetGin}%;"><span class="pt-label">Gin</span></div>
+          <div class="pour-target" style="bottom:${targetTonic}%;"><span class="pt-label">Tonic</span></div>
+          <div class="pour-fill tonic" id="fillTonic" style="height:0%; bottom:0%;"></div>
+          <div class="pour-fill gin" id="fillGin" style="height:0%;"></div>
+        </div>
+        <div class="pour-controls">
+          <select class="ingredient-select" id="ingredientSelect">
+            <option value="gin">Gin</option>
+            <option value="tonic">Tonic</option>
+          </select>
+          <div class="pour-sliders">
+            <div class="slider-block">
+              <div class="mini-label">Raise Bottle</div>
+              <div class="mini-track vertical" id="trackRaise"><div class="mini-handle" id="handleRaise"></div></div>
+            </div>
+            <div class="slider-block">
+              <div class="mini-label">Tilt to Pour</div>
+              <div class="mini-track" id="trackTilt"><div class="mini-handle" id="handleTilt"></div></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="round-readout" id="roundReadout"></div>
-      <div class="knob-row">
-        <div class="knob-block">
-          <div class="mini-label">Sensitivity</div>
-          <div class="knob" id="knob"><div class="indicator" id="knobIndicator"></div></div>
-        </div>
-        <div class="slider-block">
-          <div class="mini-label">Horizontal</div>
-          <div class="mini-track" id="trackH"><div class="mini-handle" id="handleH"></div></div>
-        </div>
-        <div class="slider-block">
-          <div class="mini-label">Vertical</div>
-          <div class="mini-track vertical" id="trackV"><div class="mini-handle" id="handleV"></div></div>
-        </div>
-      </div>
-      <button id="lockBtn">Lock Reading</button>
+      <div class="pour-readout" id="pourReadout"></div>
+      <button id="serveBtn">Serve This Round</button>
     `;
 
-    const dartboard = document.getElementById('dartboard');
-    const marker = document.getElementById('marker');
-    const readout = document.getElementById('roundReadout');
-    const swapFlash = document.getElementById('swapFlash');
-    const knob = document.getElementById('knob');
-    const knobIndicator = document.getElementById('knobIndicator');
-    const trackH = document.getElementById('trackH');
-    const trackV = document.getElementById('trackV');
-    const handleH = document.getElementById('handleH');
-    const handleV = document.getElementById('handleV');
+    const fillGin = document.getElementById('fillGin');
+    const fillTonic = document.getElementById('fillTonic');
+    const select = document.getElementById('ingredientSelect');
+    const trackRaise = document.getElementById('trackRaise');
+    const trackTilt = document.getElementById('trackTilt');
+    const handleRaise = document.getElementById('handleRaise');
+    const handleTilt = document.getElementById('handleTilt');
+    const readout = document.getElementById('pourReadout');
 
-    let pos = { x: rand(20,80), y: rand(20,80) };
-    let sliderH = 50, sliderV = 50;
-    let sensitivity = 1.0;
-    let lieBias = 1.0;
-    let axesSwapped = false;
+    let ginLevel = 0, tonicLevel = 0, raise = 0, tilt = 0, momentum = 0;
 
-    function place(){ marker.style.left = pos.x + '%'; marker.style.top = pos.y + '%'; }
-    function setKnobVisual(v){
-      const deg = ((v - 0.4) / (2.2 - 0.4)) * 200 - 100;
-      knobIndicator.style.transform = `translate(-50%,-100%) rotate(${deg}deg)`;
+    function updateFill(){
+      fillGin.style.height = ginLevel + '%';
+      fillTonic.style.bottom = ginLevel + '%';
+      fillTonic.style.height = tonicLevel + '%';
     }
-    place();
-    setKnobVisual(sensitivity);
-    handleH.style.left = sliderH + '%';
-    handleV.style.top = (100 - sliderV) + '%';
+    updateFill();
+    handleRaise.style.top = '100%';
+    handleTilt.style.left = '0%';
 
-    knob.addEventListener('pointerdown', (e) => {
-      const startY = e.clientY, startSens = sensitivity;
+    trackRaise.addEventListener('pointerdown', (e) => {
+      const r = trackRaise.getBoundingClientRect();
       function onMove(ev){
-        sensitivity = clamp(startSens + (startY - ev.clientY) / 150, 0.4, 2.2);
-        setKnobVisual(sensitivity);
+        raise = clamp(((r.bottom - ev.clientY) / r.height) * 100, 0, 100);
+        handleRaise.style.top = (100 - raise) + '%';
       }
+      onMove(e);
       function onUp(){ window.removeEventListener('pointermove', onMove); window.removeEventListener('pointerup', onUp); }
       window.addEventListener('pointermove', onMove);
       window.addEventListener('pointerup', onUp);
     });
-
-    function appliedSensitivity(){ return sensitivity * lieBias; }
-
-    trackH.addEventListener('pointerdown', (e) => {
-      const r = trackH.getBoundingClientRect();
-      const startX = e.clientX, startVal = sliderH;
+    trackTilt.addEventListener('pointerdown', (e) => {
+      const r = trackTilt.getBoundingClientRect();
       function onMove(ev){
-        sliderH = clamp(startVal + ((ev.clientX - startX) / r.width) * 100 * appliedSensitivity(), 0, 100);
-        handleH.style.left = sliderH + '%';
+        tilt = clamp(((ev.clientX - r.left) / r.width) * 100, 0, 100);
+        handleTilt.style.left = tilt + '%';
       }
+      onMove(e);
       function onUp(){ window.removeEventListener('pointermove', onMove); window.removeEventListener('pointerup', onUp); }
       window.addEventListener('pointermove', onMove);
       window.addEventListener('pointerup', onUp);
     });
-    trackV.addEventListener('pointerdown', (e) => {
-      const r = trackV.getBoundingClientRect();
-      const startY = e.clientY, startVal = sliderV;
-      function onMove(ev){
-        sliderV = clamp(startVal + ((startY - ev.clientY) / r.height) * 100 * appliedSensitivity(), 0, 100);
-        handleV.style.top = (100 - sliderV) + '%';
-      }
-      function onUp(){ window.removeEventListener('pointermove', onMove); window.removeEventListener('pointerup', onUp); }
-      window.addEventListener('pointermove', onMove);
-      window.addEventListener('pointerup', onUp);
+    select.addEventListener('change', () => {
+      raise = 0; tilt = 0; momentum = 0;
+      handleRaise.style.top = '100%'; handleTilt.style.left = '0%';
     });
-
-    function flashSwap(){
-      swapFlash.classList.add('show');
-      dartboard.style.transform = 'translateX(-4px)';
-      setTimeout(() => { dartboard.style.transform = 'translateX(4px)'; }, 70);
-      setTimeout(() => { dartboard.style.transform = ''; }, 140);
-      setTimeout(() => { swapFlash.classList.remove('show'); }, 900);
-    }
-    function scheduleSwap(){
-      if(!chaos.swap) return;
-      g.swapTimer = setTimeout(() => {
-        axesSwapped = !axesSwapped;
-        flashSwap();
-        beep(axesSwapped ? 260 : 340, 0.08, 0.03);
-        scheduleSwap();
-      }, rand(chaos.swap[0], chaos.swap[1]));
-    }
-    scheduleSwap();
-
-    function scheduleJolt(){
-      if(!chaos.jolt) return;
-      g.joltTimer = setTimeout(() => {
-        pos.x = clamp(pos.x + rand(-22,22), 4, 96);
-        pos.y = clamp(pos.y + rand(-22,22), 4, 96);
-        readout.textContent = 'IT SLIPS!';
-        beep(180, 0.1, 0.04);
-        scheduleJolt();
-      }, rand(chaos.jolt[0], chaos.jolt[1]));
-    }
-    scheduleJolt();
-
-    function scheduleLie(){
-      if(!chaos.knobLie) return;
-      lieBias = rand(0.4, 1.6);
-      g.lieTimer = setTimeout(scheduleLie, rand(1200, 2000));
-    }
-    scheduleLie();
 
     function frame(){
-      const t = axesSwapped ? { x: sliderV, y: sliderH } : { x: sliderH, y: sliderV };
-      pos.x = clamp(pos.x + (t.x - pos.x) * 0.1 + rand(-chaos.wander, chaos.wander), 4, 96);
-      pos.y = clamp(pos.y + (t.y - pos.y) * 0.1 + rand(-chaos.wander, chaos.wander), 4, 96);
-      place();
-      if(readout.textContent === 'IT SLIPS!'){} else {
-        const dist = Math.hypot(pos.x - 50, pos.y - 50);
-        readout.textContent = dist < 16 ? 'ON TARGET' : '';
+      const raiseThreshold = sensitive ? 60 : 38;
+      const armed = raise >= raiseThreshold;
+      let rate = 0;
+      if(armed && tilt > 4){
+        const tf = tilt / 100;
+        rate = sensitive ? Math.pow(tf, 1.6) * 2.6 : tf * 0.85;
       }
+      if(sensitive){ momentum = momentum * 0.9 + rate * 0.4; rate += momentum; }
+      if(rate > 0){
+        const ingredient = select.value;
+        if(ingredient === 'gin'){ ginLevel = clamp(ginLevel + rate, 0, 100 - tonicLevel); }
+        else { tonicLevel = clamp(tonicLevel + rate, 0, 100 - ginLevel); }
+        updateFill();
+      }
+      readout.textContent = (ginLevel + tonicLevel) >= 98 ? 'OVERFLOWING!' : '';
       g.animId = requestAnimationFrame(frame);
     }
     g.animId = requestAnimationFrame(frame);
 
-    document.getElementById('lockBtn').addEventListener('click', () => {
+    document.getElementById('serveBtn').addEventListener('click', () => {
       stopAnim2();
-      marker.classList.add('settled');
-      const dist = Math.hypot(pos.x - 50, pos.y - 50);
-      const score = clamp(Math.round(100 * (1 - dist / 55)), 0, 100);
+      const gapGin = Math.abs(ginLevel - targetGin);
+      const gapTonic = Math.abs((ginLevel + tonicLevel) - targetTonic);
+      const score = clamp(Math.round(100 - ((gapGin + gapTonic) / 2) * 2.2), 0, 100);
       const tier = tierFromScore(score);
       const text = pick(tier.pool);
       g.names[mode].push({ score, text });
       beep(700, 0.12, 0.05);
-      readout.textContent = 'LOCKED — GRADE ' + score;
-      setTimeout(() => {
-        if(g.round < MAX_ROUNDS){ g.round += 1; renderRound(); }
-        else { divineBeat(() => renderNamePicker(mode)); }
-      }, 900);
+      showRoundResult(score, text);
+    });
+  }
+
+  function showRoundResult(score, text){
+    const isTier0 = tierFromScore(score).n === 0;
+    stage.innerHTML = `
+      ${badge2()}
+      <div class="result-card">
+        <div class="widget-label">This Round's Pour</div>
+        <div class="result-quote ${isTier0 ? 'tier0' : ''}">${isTier0 ? text : '“' + text + '.”'}</div>
+        <div class="entropy-row"><div class="entropy-score">GRADE ${score}</div><div class="entropy-tier">${scoreLabel(score)}</div></div>
+        <div class="actions"><button id="nextRoundBtn">${g.round < MAX_ROUNDS ? 'Next Round' : 'See My Three Names'}</button></div>
+      </div>`;
+    document.getElementById('nextRoundBtn').addEventListener('click', () => {
+      if(g.round < MAX_ROUNDS){ g.round += 1; renderRound(); }
+      else { divineBeat(() => renderNamePicker(g.mode)); }
     });
   }
 
@@ -878,12 +825,13 @@
 
   function renderNamePicker(mode){
     const names = g.names[mode];
+    recap.allFlavors[mode] = names;
     let selectedIdx = null;
     function draw(){
       stage.innerHTML = `
         ${badge2()}
         <div class="scene-story">
-          <div class="widget-label">Three Names Emerged — Choose One</div>
+          <div class="widget-label">Three Gin Tonics Mixed — Choose One to Bottle</div>
           <div class="name-cards" id="nameCards">
             ${names.map((n,i) => `<div class="name-card${selectedIdx===i?' selected':''}" data-i="${i}">
               <div class="nc-text">${n.text}</div>
@@ -1000,23 +948,29 @@
   RENDERERS.act3_recap = function(){
     const c = C('act3_recap');
     const slogImgs = (mode, prefix) => recap.slogans[mode].map(n => `<img src="${IMG['slogan' + prefix + n]}">`).join('');
+    const flavorList = (mode) => {
+      const chosen = recap.flavor[mode];
+      const all = recap.allFlavors[mode];
+      if(!all || !all.length) return '—';
+      return `<ul class="recap-flavors">${all.map(n => `<li${chosen && chosen.text===n.text && chosen.score===n.score ? ' class="chosen"' : ''}>${n.text}</li>`).join('')}</ul>`;
+    };
     stage.innerHTML = `
       <div class="scene-story wide">
         <div class="story-eyebrow">${c.Eyebrow||''}</div>
         <h2>${c.Heading||''}</h2>
         <div class="story-body">${c.Body||''}</div>
         <table class="recap-table">
-          <tr><th>Contender</th><th>Protocol Grade</th><th>Chosen Flavor</th><th>Collected Slogans</th></tr>
+          <tr><th>Contender</th><th>Protocol Grade</th><th>The Three Flavors</th><th>Collected Slogans</th></tr>
           <tr>
             <td class="name-col">Jonas</td>
             <td>${recap.grade.jonas}</td>
-            <td>${recap.flavor.jonas ? recap.flavor.jonas.text : '—'}</td>
+            <td>${flavorList('jonas')}</td>
             <td><div class="recap-slogans">${slogImgs('jonas','J') || '—'}</div></td>
           </tr>
           <tr>
             <td class="name-col">Falkorc</td>
             <td>${recap.grade.falkorc}</td>
-            <td>${recap.flavor.falkorc ? recap.flavor.falkorc.text : '—'}</td>
+            <td>${flavorList('falkorc')}</td>
             <td><div class="recap-slogans">${slogImgs('falkorc','F') || '—'}</div></td>
           </tr>
         </table>
