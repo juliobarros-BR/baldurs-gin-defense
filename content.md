@@ -39,9 +39,9 @@ so editing them in the file itself is easier than round-tripping through here.
 
 **Eyebrow:** II.
 **Heading:** The Alchemist and the Sage
-**Portrait1Name:** Elli
+**Portrait1Name:** Jonas
 **Portrait1Title:** Gin Alchemist
-**Portrait1Body:** Jonas — known behind this bar as Elli — has spent years perfecting the old ways of the still. "Botanicals are my weapons."
+**Portrait1Body:** Jonas has spent years perfecting the old ways of the still. "Botanicals are my weapons."
 **Portrait2Name:** Druidingo
 **Portrait2Title:** Support
 **Portrait2Body:** Ingo, keeper of the wild botanicals, sworn to see the craft endure. "More botanicals! More friends!"
@@ -80,7 +80,7 @@ so editing them in the file itself is easier than round-tripping through here.
 - Enter the following 3 ingredients in the "Ingredients" Project (add your initials to the ingredient you add): Grain Spirit, Orange Peel, Coriander Seeds
 - Connect your respective protocol to the objects created
 - Create a fancy name for your gin and connect the required protocol and ingredients
-**OrderNote:** Contenders enter in order of seniority: <b>Druidingo</b>, then <b>Falkorc</b>, then <b>Elli</b>. Only two will continue.
+**OrderNote:** Contenders enter in order of seniority: <b>Druidingo</b>, then <b>Falkorc</b>, then <b>Jonas</b>. Only two will continue.
 **Button:** Return — Name the Finalists
 
 ## act1_finalists
@@ -89,6 +89,13 @@ so editing them in the file itself is easier than round-tripping through here.
 **Heading:** Name the Finalists
 **Body:** Of the three who entered their craft into the record, only two may carry the trial forward. Click to crown exactly two.
 **Button:** Confirm Finalists
+
+## act1_grading
+
+**Eyebrow:** Trial I — Complete
+**Heading:** Grading the Protocols
+**Body:** Judge what you actually saw in the Ledger — drag each slider to the grade each contender's protocol earned.
+**Button:** Confirm Grades
 
 ## act2_brief
 
@@ -102,27 +109,33 @@ so editing them in the file itself is easier than round-tripping through here.
 
 **Eyebrow:** Trial III
 **Heading:** The Puzzle of Tastes
-**Body:** By now, the village already leans toward Jonas' gin — you can hear it in the square. But Falkorc gets one last chance to win the whole bar back: a single puzzle, its faces bearing not colors but the sigils of science itself, matched face by face. One minute on the clock.
-<br><br>If the puzzle falls into place before time runs out, Falkorc keeps his bar and wins Jonas'. If not, the village has already decided.
-**Button:** Start the Clock
+**Body:** Things aren't going well for Falkorc, so he's staking everything on a crazy slogan for his gin. Both houses have six candidate slogans painted on the walls of the square — and one minute to match their colors on the great puzzle cube. Whichever slogans the cube actually matches are the ones that stick.
+**Button:** Begin the Puzzle
 
-## act3_duel
+## act3_slogans
 
 **Eyebrow:** Trial III — In Progress
-**Heading:** The Puzzle of Tastes
+**Heading:** Matching the Slogans
 **Button:** Start the Clock
+
+## act3_recap
+
+**Eyebrow:** The Night's Ledger
+**Heading:** Wood Science Village Decides
+**Body:** Protocol, flavor, and slogan — everything the village has seen tonight, side by side.
+**Body2:** The crowd will decide who has the best gin!
 
 ## rebellion
 
 **Eyebrow:** An Unexpected Turn
 **Heading:** The Village Rebels
-**Body:** The puzzle clicks into place — Falkorc's, fair and square. But before the announcement is even finished, the square erupts. Tankards slam onto tables. A chant rises from the back of the crowd and does not stop: <i>"Jonas! Jonas! Jonas!"</i> Whatever the rules said, Wood Science Village has already made up its mind.
+**Body:** The crowd leans toward Falkorc for a moment — his slogan lands, tankards rise in his name. But before the cheer even settles, a louder chant rises from the back of the square and does not stop: <i>"Jonas! Jonas! Jonas!"</i> Whatever the room decided a moment ago, Wood Science Village has now made up its mind.
 **Button:** See How the Night Ends
 
 ## finale
 
 **Eyebrow:** Epilogue
 **Heading:** Jonas' Gin — Different Minds, Same Spirit(s)
-**Body:** By nightfall the whole square is toasting — Ingo, Elli, even Falkorc himself, glass raised beside the owlbear statue. Two bars, one crowd, one very loud verdict.
+**Body:** By nightfall the whole square is toasting — Ingo, Jonas, even Falkorc himself, glass raised beside the owlbear statue. Two bars, one crowd, one very loud verdict.
 **Body2:** <b>In every world that matters: Jonas Maas has successfully defended his thesis.</b>
 **Closing:** — The End —
