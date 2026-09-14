@@ -35,13 +35,17 @@
   #app{ height:100vh; display:flex; align-items:center; justify-content:center; padding: 24px; }
   .rig{
     width: min(980px, 96vw);
-    max-height: 94vh;
+    height: min(860px, 92vh);
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
     background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
     border: 1px solid var(--line);
     border-radius: 6px;
     box-shadow: 0 0 0 1px #000, 0 30px 90px -20px rgba(0,0,0,0.85), inset 0 0 80px rgba(227,184,79,0.03);
-    padding: 30px 36px 32px;
+    padding: 24px 36px 20px;
     position: relative;
   }
   .rig::before{
@@ -53,15 +57,15 @@
   .corner.tl{ top:6px; left:6px; } .corner.tr{ top:6px; right:6px; }
   .corner.bl{ bottom:6px; left:6px; } .corner.br{ bottom:6px; right:6px; }
 
-  header{ display:flex; justify-content:space-between; align-items:flex-start; border-bottom: 1px solid var(--line-dim); padding-bottom: 14px; margin-bottom: 18px; }
+  header{ flex-shrink:0; display:flex; justify-content:space-between; align-items:flex-start; border-bottom: 1px solid var(--line-dim); padding-bottom: 12px; margin-bottom: 12px; }
   .brand h1{ margin:0; font-size: 20px; letter-spacing: 2px; color: var(--accent); text-shadow: 0 0 20px rgba(227,184,79,0.35); font-variant: small-caps; }
   .brand p{ margin: 4px 0 0; font-size: 10px; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase; font-style: italic;}
   .status{ text-align:right; font-size: 10px; color: var(--text-dim); letter-spacing:1px; line-height:1.7; text-transform:uppercase;}
   .status .dot{ display:inline-block; width:6px; height:6px; border-radius:50%; background: var(--astral); margin-right:6px; box-shadow:0 0 8px var(--astral); }
 
-  .stage{ min-height: 360px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; position:relative;}
+  .stage{ flex:1; min-height:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; position:relative; overflow:hidden; }
 
-  footer.hint{ text-align:center; font-size:10px; color:#5a4426; letter-spacing:1px; margin-top:18px; font-style:italic; }
+  footer.hint{ flex-shrink:0; text-align:center; font-size:10px; color:#5a4426; letter-spacing:1px; margin-top:10px; font-style:italic; }
 
   button{
     font-family: inherit; cursor:pointer; letter-spacing:2px; text-transform:uppercase;
@@ -83,22 +87,22 @@
   .scene-story h2{ font-size:23px; letter-spacing:1px; color:var(--gold); margin: 4px 0 14px; font-variant:small-caps; }
   .story-body{ font-size:15px; line-height:1.75; color:var(--text); margin: 10px 0 6px; }
   .story-eyebrow{ font-size:11px; letter-spacing:3px; color:var(--astral); text-transform:uppercase; margin-bottom:2px;}
-  .scene-image{ width:100%; max-height:340px; object-fit:cover; border-radius:6px; border:1px solid var(--line); box-shadow:0 14px 36px rgba(0,0,0,0.6); margin:10px 0; }
+  .scene-image{ display:block; margin:6px auto; max-width:100%; height:min(30vh,270px); width:auto; object-fit:contain; border-radius:6px; border:1px solid var(--line); box-shadow:0 14px 36px rgba(0,0,0,0.6); background:#0a0603; }
   .trial-list{ text-align:left; max-width:560px; margin:14px auto; font-size:14px; line-height:1.9; color:var(--text); }
   .order-note{ font-size:13px; color:var(--text-dim); font-style:italic; margin-top:14px; }
 
-  .big-portrait-row{ display:flex; gap:24px; justify-content:center; margin:16px 0; flex-wrap:wrap; }
-  .big-portrait{ width:280px; text-align:left; background:#180f08; border:1px solid var(--line-dim); border-radius:6px; overflow:hidden; }
-  .big-portrait img{ width:100%; height:240px; object-fit:cover; display:block; }
-  .big-portrait .bp-name{ font-size:16px; color:var(--accent); font-variant:small-caps; letter-spacing:1px; padding:12px 14px 0; }
-  .big-portrait .bp-title{ font-size:10px; color:var(--astral); text-transform:uppercase; letter-spacing:1px; padding:2px 14px 0; }
-  .big-portrait .bp-body{ font-size:12.5px; color:var(--text-dim); line-height:1.6; padding:8px 14px 14px; }
+  .big-portrait-row{ display:flex; gap:20px; justify-content:center; margin:10px 0; flex-wrap:wrap; }
+  .big-portrait{ width:min(220px, 40vw); text-align:left; background:#180f08; border:1px solid var(--line-dim); border-radius:6px; overflow:hidden; }
+  .big-portrait img{ width:100%; aspect-ratio:3/4; height:auto; max-height:26vh; object-fit:cover; object-position:center 15%; display:block; }
+  .big-portrait .bp-name{ font-size:15px; color:var(--accent); font-variant:small-caps; letter-spacing:1px; padding:10px 12px 0; }
+  .big-portrait .bp-title{ font-size:9.5px; color:var(--astral); text-transform:uppercase; letter-spacing:1px; padding:2px 12px 0; }
+  .big-portrait .bp-body{ font-size:11.5px; color:var(--text-dim); line-height:1.5; padding:6px 12px 12px; }
 
-  .single-portrait{ width:300px; margin:12px auto; text-align:left; background:#180f08; border:1px solid var(--line-dim); border-radius:6px; overflow:hidden; }
-  .single-portrait img{ width:100%; height:260px; object-fit:cover; display:block; }
-  .single-portrait .bp-name{ font-size:16px; color:var(--accent); font-variant:small-caps; letter-spacing:1px; padding:12px 14px 0; }
-  .single-portrait .bp-title{ font-size:10px; color:var(--astral); text-transform:uppercase; letter-spacing:1px; padding:2px 14px 0; }
-  .single-portrait .bp-body{ font-size:12.5px; color:var(--text-dim); line-height:1.6; padding:8px 14px 14px; }
+  .single-portrait{ width:min(240px, 44vw); margin:6px auto; text-align:left; background:#180f08; border:1px solid var(--line-dim); border-radius:6px; overflow:hidden; }
+  .single-portrait img{ width:100%; aspect-ratio:3/4; height:auto; max-height:28vh; object-fit:cover; object-position:center 15%; display:block; }
+  .single-portrait .bp-name{ font-size:15px; color:var(--accent); font-variant:small-caps; letter-spacing:1px; padding:10px 12px 0; }
+  .single-portrait .bp-title{ font-size:9.5px; color:var(--astral); text-transform:uppercase; letter-spacing:1px; padding:2px 12px 0; }
+  .single-portrait .bp-body{ font-size:11.5px; color:var(--text-dim); line-height:1.5; padding:6px 12px 12px; }
 
   /* ---- roster / finalists ---- */
   .roster{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin:18px 0; }
