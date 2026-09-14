@@ -39,15 +39,18 @@ joke "GIN" card — entirely optional, never required.
 
 ## Trial II — Naming the Gin (~4–5 min)
 10. Brief — mixing three gin tonics sets each contender's names.
-11. **Mixing the Gin Tonic** — a glass with two dashed target lines (one for
-    Gin, one for the Gin+Tonic total). Three widgets: a dropdown to pick
-    which ingredient you're pouring, a vertical slider to raise the bottle
-    (below a threshold, nothing pours), and a horizontal slider to tilt it
-    (controls pour rate once raised). Switching the ingredient drops both
-    sliders back to zero — you're picking up a different bottle. Click
-    Serve This Round whenever you're happy with the level, then an explicit
-    button takes you to the next round (or to your three names on round 3
-    — nothing ever auto-advances).
+11. **Mixing the Gin Tonic** — your real bottle/cup/gin-tonic art now: the
+    cup sits fixed, the selected bottle actually lifts and tilts as you
+    work the sliders, and both bottle and cup show a translucent tinted
+    liquid level masked to the real artwork's silhouette (bottle drains as
+    the cup fills). Three widgets: a dropdown to pick the ingredient, a
+    vertical slider to raise the bottle (too low or too high and some of
+    the pour is wasted — "SPILLING!"), and a horizontal slider to tilt it
+    (controls pour rate once raised into the sweet spot). Switching the
+    ingredient swaps in the other bottle and drops both sliders back to
+    zero. Click Serve This Round whenever you're happy with the level, then
+    an explicit button takes you to the next round (or to your three names
+    on round 3 — nothing ever auto-advances).
     - **Jonas plays first**, 3 rounds, pour response is smooth and linear.
     - **Falkorc plays second**, 3 rounds — his bottle is just far more
       sensitive: small tilt changes swing the pour rate hard, and it keeps
