@@ -744,14 +744,24 @@
     return clamp(0.3 + ((100 - raiseVal) / (100 - hi)) * 0.7, 0.3, 1);
   }
 
+  // Each round calls for a differently-proportioned pour, not just a
+  // re-roll of the same range — a strong gin-forward one, a classic even
+  // split, then a light tonic-heavy one.
+  const ROUND_RECIPES = [
+    { name: 'Gin-Forward',  gin: [46, 56], tonicAdd: [14, 22] },
+    { name: 'Classic Split', gin: [26, 34], tonicAdd: [28, 36] },
+    { name: 'Tonic-Light',  gin: [10, 18], tonicAdd: [42, 52] }
+  ];
+
   function renderRound(){
     const mode = g.mode;
     const sensitive = mode === 'falkorc';
-    const targetGin = rand(24, 36);
-    const targetTonic = targetGin + rand(30, 42);
+    const recipe = ROUND_RECIPES[g.round - 1];
+    const targetGin = rand(recipe.gin[0], recipe.gin[1]);
+    const targetTonic = targetGin + rand(recipe.tonicAdd[0], recipe.tonicAdd[1]);
     stage.innerHTML = `
       ${badge2()}
-      <div class="widget-label">Mixing the Gin Tonic — Round ${g.round} of ${MAX_ROUNDS}</div>
+      <div class="widget-label">Mixing the Gin Tonic — Round ${g.round} of ${MAX_ROUNDS} (${recipe.name})</div>
       <div class="pour-row">
         <div class="mix-stage">
           <div class="bottle-wrap" id="bottleWrap">
