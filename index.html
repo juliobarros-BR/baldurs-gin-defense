@@ -118,10 +118,11 @@
   .bottle-hero{ width:170px; margin:0 auto; position:relative; }
   .bottle-hero img{ width:100%; display:block; filter:drop-shadow(0 14px 24px rgba(0,0,0,0.6)); }
   .bottle-hero .hero-label{
-    position:absolute; left:21%; right:21%; top:39%; height:28%;
+    position:absolute; left:23%; right:23%; top:52%; height:15%;
     display:flex; align-items:center; justify-content:center; text-align:center;
-    font-size:11.5px; font-style:italic; line-height:1.28; color:#3a2410;
+    overflow:hidden; font-style:italic; line-height:1.15; color:#3a2410;
   }
+  .bottle-hero .hero-label span{ display:block; width:100%; min-width:0; }
 
   /* ---- stopwatch ---- */
   .stopwatch{ font-size:64px; letter-spacing:1px; color:var(--accent); text-shadow:0 0 22px rgba(227,184,79,0.4); font-variant-numeric: tabular-nums; margin: 6px 0;}
@@ -955,6 +956,21 @@
   }
 
   // ================= Trial II: bottles =================
+  // The label patch painted into gin_bottle.png is small and irregularly
+  // shaped (a star emblem above, a floral sprig below) — longer names need
+  // a visibly smaller size to have any chance of fitting inside it.
+  function heroLabelFontSize(text){
+    const n = text.length;
+    if(n <= 14) return 10.5;
+    if(n <= 25) return 9;
+    if(n <= 40) return 7.5;
+    if(n <= 60) return 6.4;
+    return 5.6;
+  }
+  function heroLabelHtml(text){
+    return `<span style="font-size:${heroLabelFontSize(text)}px;">${text}</span>`;
+  }
+
   RENDERERS.act2_bottles = function(){
     const jonas = recap.flavor.jonas || { score:0, text:'an unrecorded pour' };
     const falk = recap.flavor.falkorc || { score:0, text:'an unrecorded pour' };
@@ -965,12 +981,12 @@
         <div class="story-body">By morning, both gins stood on the shelves of Wood Science Village.</div>
         <div class="bottle-row">
           <div class="bottle">
-            <div class="bottle-hero"><img src="${IMG.ginBottle}"><div class="hero-label">${jonas.text}</div></div>
+            <div class="bottle-hero"><img src="${IMG.ginBottle}"><div class="hero-label">${heroLabelHtml(jonas.text)}</div></div>
             <div class="bottle-name">Jonas's Reserve</div>
             <div class="bottle-note">Grade ${jonas.score} &middot; ${scoreLabel(jonas.score)}</div>
           </div>
           <div class="bottle">
-            <div class="bottle-hero"><img src="${IMG.ginBottle}"><div class="hero-label">${falk.text}</div></div>
+            <div class="bottle-hero"><img src="${IMG.ginBottle}"><div class="hero-label">${heroLabelHtml(falk.text)}</div></div>
             <div class="bottle-name">Falkorc's Batch</div>
             <div class="bottle-note">Grade ${falk.score} &middot; ${scoreLabel(falk.score)}</div>
           </div>
