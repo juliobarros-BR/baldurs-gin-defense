@@ -185,7 +185,10 @@
   .grade-block{ text-align:center; }
   .grade-block .gname{ font-size:13px; color:var(--accent); font-variant:small-caps; letter-spacing:1px; margin-bottom:8px; }
   .grade-block .gval{ font-size:26px; color:var(--gold); margin-top:8px; font-variant-numeric:tabular-nums; }
-  .grade-block .mini-track{ width:200px; }
+  .grade-block .mini-track{
+    width:200px;
+    background-image: repeating-linear-gradient(90deg, var(--line) 0, var(--line) 1px, transparent 1px, transparent 10%);
+  }
 
   /* ---- slogan grid (Trial III) ---- */
   .slogan-section{ margin:6px 0; }
@@ -617,7 +620,7 @@
       const handle = document.getElementById('grade'+who[0].toUpperCase()+who.slice(1)+'Handle');
       const valEl = document.getElementById('grade'+who[0].toUpperCase()+who.slice(1)+'Val');
       function set(pct){
-        pct = clamp(Math.round(pct), 0, 100);
+        pct = clamp(Math.round(pct / 10) * 10, 0, 100);
         recap.grade[who] = pct;
         handle.style.left = pct + '%';
         valEl.textContent = pct;
