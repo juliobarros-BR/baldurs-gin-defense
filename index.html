@@ -711,6 +711,20 @@
   const BOTTLE_MIN_FILL = 6;
   const RAISE_MIN_TO_POUR = 12;
   const RAISE_IDEAL_LO = 40, RAISE_IDEAL_HI = 78;
+  // Falkorc's "ideal" window is much narrower and his own hand won't hold
+  // still in it — nearly impossible to pour cleanly, on purpose.
+  const RAISE_IDEAL_LO_SENSITIVE = 52, RAISE_IDEAL_HI_SENSITIVE = 62;
+
+  // Fixed outcomes, independent of score — round 1/2/3 in order. The pour
+  // score still drives the Grade/rarity readout, just not which name shows.
+  const SCRIPTED_FLAVORS = {
+    jonas: [
+      "Lemon peel remembering a summer it never had",
+      "Post-rain rosemary with emotionally distant grapefruit",
+      "Pine forest nostalgia with unresolved coriander tension"
+    ],
+    falkorc: ["Mint", "Coriander", "Gin"]
+  };
 
   function bandMaskImage(imgUrl, fromPct, toPct){
     return `url('${imgUrl}'), linear-gradient(to top, transparent 0%, transparent ${fromPct}%, black ${fromPct}%, black ${toPct}%, transparent ${toPct}%, transparent 100%)`;
@@ -719,10 +733,12 @@
     el.style.maskImage = bandMaskImage(imgUrl, fromPct, toPct);
     el.style.webkitMaskImage = bandMaskImage(imgUrl, fromPct, toPct);
   }
-  function pourEfficiency(raiseVal){
-    if(raiseVal >= RAISE_IDEAL_LO && raiseVal <= RAISE_IDEAL_HI) return 1;
-    if(raiseVal < RAISE_IDEAL_LO) return clamp(0.3 + (raiseVal / RAISE_IDEAL_LO) * 0.7, 0.3, 1);
-    return clamp(0.3 + ((100 - raiseVal) / (100 - RAISE_IDEAL_HI)) * 0.7, 0.3, 1);
+  function pourEfficiency(raiseVal, sensitive){
+    const lo = sensitive ? RAISE_IDEAL_LO_SENSITIVE : RAISE_IDEAL_LO;
+    const hi = sensitive ? RAISE_IDEAL_HI_SENSITIVE : RAISE_IDEAL_HI;
+    if(raiseVal >= lo && raiseVal <= hi) return 1;
+    if(raiseVal < lo) return clamp(0.3 + (raiseVal / lo) * 0.7, 0.3, 1);
+    return clamp(0.3 + ((100 - raiseVal) / (100 - hi)) * 0.7, 0.3, 1);
   }
 
   function renderRound(){
@@ -846,14 +862,17 @@
 
     let driftT = 0;
     function frame(){
+      // Falkorc's grip trembles — the raise reading itself is unstable,
+      // even though the handle he sees stays where he put it.
+      const effectiveRaise = sensitive ? clamp(raise + Math.sin(driftT / 90) * 9 + rand(-3, 3), 0, 100) : raise;
       bottleWrap.style.transform = `translateY(${-(raise / 100) * 42}px) rotate(${(tilt / 100) * 68}deg)`;
 
-      const armed = raise >= RAISE_MIN_TO_POUR;
+      const armed = effectiveRaise >= RAISE_MIN_TO_POUR;
       const pouring = armed && tilt > 4;
       let sensDrift = 1;
       if(sensitive && pouring){
         driftT += 16;
-        sensDrift = clamp(1 + Math.sin(driftT / 220) * 0.55 + Math.sin(driftT / 470 + 1.3) * 0.35, 0.3, 2.1);
+        sensDrift = clamp(1 + Math.sin(driftT / 150) * 0.85 + Math.sin(driftT / 330 + 1.3) * 0.6, 0.12, 2.6);
       } else if(!pouring){
         driftT = 0;
       }
@@ -861,13 +880,13 @@
       let rawRate = 0;
       if(pouring){
         const tf = tilt / 100;
-        rawRate = sensitive ? Math.pow(tf, 1.6) * 2.6 * sensDrift : tf * 0.85;
+        rawRate = sensitive ? Math.pow(tf, 2.0) * 3.4 * sensDrift : tf * 0.85;
       }
-      if(sensitive){ momentum = momentum * 0.9 + rawRate * 0.4; rawRate += momentum; }
+      if(sensitive){ momentum = momentum * 0.88 + rawRate * 0.55; rawRate += momentum; }
 
       let spilling = false;
       if(rawRate > 0){
-        const eff = pourEfficiency(raise);
+        const eff = pourEfficiency(effectiveRaise, sensitive);
         if(eff < 0.85) spilling = true;
         const effectiveRate = rawRate * eff;
         const ingredient = select.value;
@@ -891,8 +910,7 @@
       const gapGin = Math.abs(ginLevel - targetGin);
       const gapTonic = Math.abs((ginLevel + tonicLevel) - targetTonic);
       const score = clamp(Math.round(100 - ((gapGin + gapTonic) / 2) * 2.2), 0, 100);
-      const tier = tierFromScore(score);
-      const text = pick(tier.pool);
+      const text = SCRIPTED_FLAVORS[mode][g.round - 1];
       g.names[mode].push({ score, text });
       beep(700, 0.12, 0.05);
       showRoundResult(score, text);
@@ -900,7 +918,7 @@
   }
 
   function showRoundResult(score, text){
-    const isTier0 = tierFromScore(score).n === 0;
+    const isTier0 = TIER0.includes(text);
     stage.innerHTML = `
       ${badge2()}
       <div class="result-card">
